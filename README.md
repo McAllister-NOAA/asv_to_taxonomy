@@ -2,11 +2,11 @@
 
 Written by Sean McAllister, v.1 12/2022
 
-##Purpose
+## Purpose
 
 This stand-alone script is meant to take a formatted btab blastn file and parse the results to assign taxonomy for each ASV. The basic standpoint is that from a list of taxIDs from the best blast hits for each ASV and a confidence value (based on percent identity), we should be able to assign the lowest/deepest appropriate taxonomy shared by all best blast hits.
 
-##Options
+## Options
 ```
 -a = ASV counts table (make sure there is text in the upper left)
 -s = Formatted blastn results (w/ headers ASV Perc Len TaxID correction)
@@ -19,14 +19,14 @@ This stand-alone script is meant to take a formatted btab blastn file and parse 
 -h = This help message
 ```
 
-#####ASV counts table (-a, tab delimited)
+##### ASV counts table (-a, tab delimited)
 ```
 x	sample1	sample2	sample3
 ASV_1	914	365	3519
 ASV_2	4897	33097	13934
 ASV_3	0	2124	0
 ```
-#####Formatted blastn results (-s, tab delimited)
+##### Formatted blastn results (-s, tab delimited)
 Create from ```-outfmt '6 qseqid pident length staxids'```
 
 ```
@@ -38,7 +38,7 @@ ASV_3	100	313	67591, 67591;134455, 360400	313
 
 Note: Taxonomic assignments like ```67591;134455``` above indicate two taxonomic IDs assigned to the same sequence. These assignments are ignored unless they are the only assignment for the best blast hits.
 
-#####Reformatted taxonkit output (-t)
+##### Reformatted taxonkit output (-t)
 Create list of taxid from each formatted blastn result file and run through taxonkit
 
 ```
@@ -57,10 +57,10 @@ Produces list of taxIDs (column one) and their taxonomy assignment (K;P;C;O;F;G;
 
 Note: Gaps in the NCBI taxonomy at each level are filled from the lower taxonomic assignment. I.E. ```Peronosporales__c``` in the above example means that it is the class containing the order Peronosporales. These tags help to keep track of individual taxa so that they are not relegated to "Unknown" or "NA" on filtering.
 
-#####Filtering options (-f)
+##### Filtering options (-f)
 Use this comma delimited string to set the boundaries for assignment confidence based on percent identity. For ```97,95,90,80,70,60```: species assignment for ```x≥97%```, genus assignment for ```97%>x≥95%```, family assignment for ```95%>x≥90%```, order assignment for ```90%>x≥80%```, class assignment for ```80%>x≥70%```, phylum assignment for ```70%>x≥60%```, and anything lower than ```60%``` is assigned to "Unknown."
 
-#####Other options
+##### Other options
 ```-n``` is the outname of your choice
 
 ```-c``` is created from the names.dmp NCBI taxonomy file. ```grep "genbank common name" names.dmp > commonNames.txt```
@@ -68,7 +68,7 @@ Use this comma delimited string to set the boundaries for assignment confidence 
 ```-d``` (optional) List of ASVs to ignore (one per line)
 ```-o``` (optional) List of samples in the appropriate order for outfiles (one per line, must match the ASV counts file.
 
-###Example assignment
+### Example assignment
 From the examples given, you would get the following assignments:
 
 ```
@@ -77,7 +77,7 @@ ASV_2	Eukaryota;Arthropoda;Hexanauplia
 ASV_3	Eukaryota;Oomycota;Peronosporales__c;Peronosporales;Peronosporaceae;Phytophthora
 ```
 
-##Dependencies
+## Dependencies
 
 To create files prior to running will need:
 
@@ -91,7 +91,7 @@ The script itself requires:
 3. ```ImportText.pl``` KronaTools (https://hpc.nih.gov/apps/kronatools.html)
 
 
-##Outputs
+## Outputs
 This program produces a lot of useful output files.
 
 1. ```outname_asvTaxonomyTable.txt``` Main taxonomy table with assignments per ASV. (+IGNORE file when given)
