@@ -20,7 +20,7 @@ getopts("a:s:t:n:f:c:d:o:h", \%options);
 if ($options{h})
     {   print "\n\nHelp called:\nOptions:\n";
         print "-a = ASV counts table (make sure there is text in the upperleft)\n";
-        print "-s = DADA2 taxonomy output (w/ headers ASV Perc Len TaxID correction)\n";
+        print "-s = Formatted blastn results (w/ headers ASV Perc Len TaxID correction)\n";
         print "-t = reformatted taxonkit output (TaxID\tsimplified taxonomy)\n";
         print "-f = filtering options Species,Genus,Family,Order,Class,Phylum (e.g. 97,95,90,80,70,60)\n";
         print "-n = Allin Output basename\n";
