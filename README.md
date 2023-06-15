@@ -6,7 +6,7 @@ Written by Sean McAllister, v.1 12/2022
 
 This stand-alone script is meant to take a formatted btab blastn file and parse the results to assign taxonomy for each ASV. The basic standpoint is that from a list of taxIDs from the best blast hits for each ASV and a confidence value (based on percent identity), we should be able to assign the lowest/deepest appropriate taxonomy shared by all best blast hits.
 
-## Options
+## Arguments
 ```
 -a = ASV counts table (make sure there is text in the upper left)
 -s = Formatted blastn results (w/ headers ASV Perc Len TaxID correction)
@@ -60,7 +60,7 @@ Note: Gaps in the NCBI taxonomy at each level are filled from the lower taxonomi
 ##### Filtering options (-f)
 Use this comma delimited string to set the boundaries for assignment confidence based on percent identity. For ```97,95,90,80,70,60```: species assignment for ```x≥97%```, genus assignment for ```97%>x≥95%```, family assignment for ```95%>x≥90%```, order assignment for ```90%>x≥80%```, class assignment for ```80%>x≥70%```, phylum assignment for ```70%>x≥60%```, and anything lower than ```60%``` is assigned to "Unknown."
 
-##### Other options
+##### Other arguments
 ```-n``` is the outname of your choice
 
 ```-c``` is created from the names.dmp NCBI taxonomy file. ```grep "genbank common name" names.dmp > commonNames.txt```
